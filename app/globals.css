@@ -49,5 +49,5 @@ h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--color-navy); let
 .badge-orbit { transform-origin: 40px 40px; animation: badge-spin 24s linear infinite; }
 .badge-glow { animation: badge-pulse 3.6s ease-in-out infinite; }
 .badge-shine { position: absolute; inset: 0 auto 0 0; width: 28%; background: linear-gradient(90deg, transparent, rgb(22 184 166 / .16), transparent); animation: badge-sweep 4.5s ease-in-out infinite; pointer-events: none; }
-.logo-tile { display: grid; place-items: center; height: 5rem; border: 1px solid var(--color-line); border-radius: 1rem; background: #fff; box-shadow: var(--shadow-card); transition: transform .2s, box-shadow .2s; }
+.logo-tile { display: grid; place-items: center; height: 6.5rem; border: 1px solid var(--color-line); border-radius: 1rem; background: #fff; box-shadow: var(--shadow-card); transition: transform .2s, box-shadow .2s; }
 a.logo-tile:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }

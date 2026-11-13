@@ -14,7 +14,7 @@ export default function ProviderProfile({ p }: { p: Provider }) {
     <div className="container-x grid gap-12 py-16 lg:grid-cols-[2fr_1fr]">
       <div className="space-y-12">
         <section><h2 className="text-2xl font-extrabold">About {p.name}</h2><p className="mt-3 leading-relaxed">{p.overview}</p>
-          <p className="mt-3 text-sm"><strong>Technologies:</strong> {p.technologies.map(techName).join(", ")}</p></section>
+          {p.technologies.length > 0 && <p className="mt-3 text-sm"><strong>Technologies:</strong> {p.technologies.map(techName).join(", ")}</p>}</section>
         <section><h2 className="text-2xl font-extrabold">Service coverage</h2><p className="mt-3">{p.verifiedCoverage ?? "Coverage is verified address by address. Submit your address and a specialist will confirm whether this provider can serve you."}</p></section>
         <section><h2 className="text-2xl font-extrabold">Plans</h2>
           {p.plans.length === 0 ? <p className="mt-3 text-muted">Plan details are being verified. A specialist can provide current plans for your address.</p> : (
@@ -35,7 +35,7 @@ export default function ProviderProfile({ p }: { p: Provider }) {
         </section>
         <section className="rounded-xl bg-cloud p-6 text-sm leading-relaxed text-ink/80" aria-label="Retailer disclosure">
           <h2 className="text-base font-bold">Authorized retailer disclosure</h2>
-          <p className="mt-2">InternetNearby is an independent retailer {p.authorized ? `authorized to sell ${p.name} service` : "[AUTHORIZATION STATUS TO BE CONFIRMED]"}. We are not ${p.name} and this is not ${p.name}'s official website. ${p.name} is solely responsible for its service, pricing, billing, installation and support. See the <Link className="underline" href="/legal/authorized-retailer-disclosure">Authorized Retailer Disclosure</Link>.</p>
+          <p className="mt-2">InternetNearby is an independent retailer {p.authorized ? `authorized to sell ${p.name} service` : "[AUTHORIZATION STATUS TO BE CONFIRMED]"}. We are not {p.name} and this is not {p.name}&apos;s official website. {p.name} is solely responsible for its service, pricing, billing, installation and support. See the <Link className="underline" href="/legal/authorized-retailer-disclosure">Authorized Retailer Disclosure</Link>.</p>
         </section>
       </div>
       <aside><div className="card sticky top-24 p-6">

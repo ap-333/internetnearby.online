@@ -5,14 +5,16 @@ import { providers } from "@/data/providers";
 // Until then they show generic technology labels, so no brand is implied without permission.
 
 const TECH = ["Fiber", "Cable", "5G Home", "Wireless", "Satellite"];
-const PX = [66, 173, 280, 387, 494];
-const PY = [86, 50, 34, 50, 86];
 const HX = [110, 230, 350, 470];
 const HUB = { x: 280, y: 238 };
 
 export default function HeroIllustration() {
   const logos = providers.filter((p) => p.authorized && p.logoUrl).slice(0, 5);
-  const nodes = PX.map((x, i) => ({ x, y: PY[i], logo: logos[i], label: TECH[i] }));
+  const count = logos.length || TECH.length;
+  const nodes = Array.from({ length: count }, (_, i) => {
+    const off = i - (count - 1) / 2;
+    return { x: 280 + off * 107, y: 34 + 12 * off * off, logo: logos[i], label: TECH[i] };
+  });
   return (
     <svg viewBox="0 0 560 480" className="h-auto w-full" role="img" aria-label="InternetNearby connects internet providers and technologies to homes and businesses">
       <defs>
@@ -33,7 +35,7 @@ export default function HeroIllustration() {
         <g key={i} transform={`translate(${n.x - 50} ${n.y - 24})`} filter="url(#sh)">
           <rect width="100" height="48" rx="14" fill="#fff" />
           {n.logo ? (
-            <image href={n.logo.logoUrl!} x="12" y="8" width="76" height="32" preserveAspectRatio="xMidYMid meet"><title>{n.logo.name}</title></image>
+            <image href={n.logo.logoUrl!} x="6" y="5" width="88" height="38" preserveAspectRatio="xMidYMid meet"><title>{n.logo.name}</title></image>
           ) : (
             <>
               <circle cx="16" cy="24" r="4.5" fill="#16B8A6" />
