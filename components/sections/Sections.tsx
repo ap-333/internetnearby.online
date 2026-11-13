@@ -29,7 +29,7 @@ export function ProviderEcosystem() {
         {list.length > 0 ? (
           <ul className="mx-auto mt-9 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2">
             {list.map((p) => (
-              <li key={p.slug}><Link href={`/providers/${p.slug}`} className="logo-tile px-5" aria-label={`${p.name} through InternetNearby`}><Image src={p.logoUrl!} alt={p.name} width={220} height={56} className="max-h-14 w-auto object-contain" /></Link></li>
+              <li key={p.slug}><Link href={`/providers/${p.slug}`} className="logo-tile" aria-label={`${p.name} through InternetNearby`}><Image src={p.logoUrl!} alt={p.name} width={400} height={100} /></Link></li>
             ))}
           </ul>
         ) : dev ? (
