@@ -1,0 +1,43 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #102a43;
+  --color-blue: #1689e8;
+  --color-teal: #16b8a6;
+  --color-cloud: #f4f7fa;
+  --color-ink: #172b3a;
+  --color-muted: #64748b;
+  --color-line: #e2e8f0;
+  --font-heading: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --shadow-card: 0 1px 2px rgb(16 42 67 / 0.05), 0 8px 24px -8px rgb(16 42 67 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(16 42 67 / 0.06), 0 20px 40px -12px rgb(16 42 67 / 0.22);
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-sans); color: var(--color-ink); background: #fff; -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--color-navy); letter-spacing: -0.02em; }
+:focus-visible { outline: 3px solid var(--color-blue); outline-offset: 2px; border-radius: 6px; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; border-radius: .75rem; padding: .85rem 1.4rem; font-weight: 600; font-size: .875rem; letter-spacing: .04em; text-transform: uppercase; transition: transform .15s, box-shadow .15s, background .15s; cursor: pointer; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--color-blue); color: #fff; box-shadow: 0 8px 20px -8px rgb(22 137 232 / .7); }
+.btn-primary:hover { background: #0f78d0; }
+.btn-secondary { background: #fff; color: var(--color-navy); border: 1.5px solid var(--color-line); }
+.btn-secondary:hover { border-color: var(--color-navy); }
+.btn-ghost-light { color: #fff; border: 1.5px solid rgb(255 255 255 / .35); }
+.btn-ghost-light:hover { background: rgb(255 255 255 / .1); }
+
+.container-x { max-width: 76rem; margin-inline: auto; padding-inline: 1.25rem; }
+.section { padding-block: clamp(3.5rem, 8vw, 6.5rem); }
+.eyebrow { font-family: var(--font-heading); font-weight: 700; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--color-teal); }
+.card { background: #fff; border: 1px solid var(--color-line); border-radius: 1.1rem; box-shadow: var(--shadow-card); }
+.input { width: 100%; border: 1.5px solid var(--color-line); border-radius: .7rem; padding: .8rem .95rem; font-size: 1rem; background: #fff; color: var(--color-ink); }
+.input::placeholder { color: var(--color-muted); opacity: .8; }
+.input:focus { border-color: var(--color-blue); outline: none; box-shadow: 0 0 0 3px rgb(22 137 232 / .18); }
+
+.prose-legal h2 { font-size: 1.35rem; margin-top: 2.25rem; margin-bottom: .6rem; }
+.prose-legal p, .prose-legal li { color: #334155; line-height: 1.75; margin-bottom: .8rem; }
+.prose-legal ul { list-style: disc; padding-left: 1.4rem; }
+
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
