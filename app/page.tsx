@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Hero from "@/components/hero/Hero";
-import { ProviderEcosystem, HowItWorks, Technologies, WhyUs, HomeBusiness, SectionHead } from "@/components/sections/Sections";
+import { ProviderEcosystem, HowItWorks, Technologies, WhyUs, HomeBusiness, SectionHead, CheckAvailabilitySection } from "@/components/sections/Sections";
 import CtaBand from "@/components/ui/CtaBand";
 import Faq from "@/components/ui/Faq";
 import { SITE } from "@/lib/site";
@@ -21,6 +21,7 @@ export default function Home() {
       <HowItWorks />
       <Technologies />
       <WhyUs />
+      <CheckAvailabilitySection />
       <HomeBusiness />
       <CtaBand />
       <section className="section"><div className="container-x"><SectionHead eyebrow="FAQ" title="Questions we hear most" /><Faq /></div></section>

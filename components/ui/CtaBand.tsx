@@ -10,8 +10,8 @@ export default function CtaBand({ title = "Not Sure Which Internet Plan Is Right
           <h2 className="relative mx-auto max-w-2xl text-3xl font-extrabold !text-white sm:text-4xl">{title}</h2>
           <p className="relative mx-auto mt-4 max-w-xl text-white/80">{text}</p>
           <div className="relative mt-8 flex flex-wrap justify-center gap-3">
-            <PhoneCTA location="cta-band" label={cta} />
-            <Link href="/check-availability" className="btn btn-ghost-light">Check Availability</Link>
+            <PhoneCTA location="cta-band" label={cta} className="!px-8 !py-4" />
+            <Link href="/check-availability" className="btn btn-ghost-light">Or Check Online</Link>
           </div>
         </div>
       </div>

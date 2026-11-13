@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import PhoneCTA from "@/components/ui/PhoneCTA";
 import { technologies } from "@/data/technologies";
 import type { Provider } from "@/types/provider";
 
@@ -40,8 +41,8 @@ export default function ProviderProfile({ p }: { p: Provider }) {
       <aside><div className="card sticky top-24 p-6">
         {p.logoUrl && p.authorized && <Image src={p.logoUrl} alt={p.name} width={140} height={40} className="mb-4 h-10 w-auto" />}
         <h3 className="text-lg font-bold">Interested in {p.name}?</h3>
-        <p className="mt-2 text-sm text-muted">Tell us your address. A specialist confirms availability and walks you through enrollment.</p>
-        <Link href={`/check-availability?provider=${p.slug}`} className="btn btn-primary mt-4 w-full">Check Availability</Link>
+        <p className="mt-2 text-sm text-muted">Call a specialist to confirm availability at your address and walk through enrollment.</p>
+        <PhoneCTA location={`provider-${p.slug}`} className="mt-4 w-full" /><Link href={`/check-availability?provider=${p.slug}`} className="mt-3 block text-center text-sm font-semibold text-blue hover:underline">Or check availability online</Link>
       </div></aside>
     </div>
   );

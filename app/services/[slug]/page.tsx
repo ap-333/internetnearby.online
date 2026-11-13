@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/ui/PageHero";
+import PhoneCTA from "@/components/ui/PhoneCTA";
 import CtaBand from "@/components/ui/CtaBand";
 import { getService, services } from "@/data/services";
 
@@ -26,7 +27,7 @@ export default async function Service({ params }: { params: Promise<{ slug: stri
           <p className="rounded-xl bg-cloud p-5 text-sm text-muted">Availability, speeds, pricing and terms depend on your address and are set and confirmed by the provider. InternetNearby is an independent retailer, not the service provider.</p>
         </div>
         <aside className="space-y-6">
-          <div className="card p-6"><h3 className="text-lg font-bold">See what is available at your address</h3><p className="mt-2 text-sm text-muted">A specialist verifies options with authorized providers.</p><Link href="/check-availability" className="btn btn-primary mt-4 w-full">Check Availability</Link></div>
+          <div className="card p-6"><h3 className="text-lg font-bold">Talk to a specialist about your address</h3><p className="mt-2 text-sm text-muted">A specialist verifies options with authorized providers while you are on the line.</p><PhoneCTA location={`service-${s.slug}`} className="mt-4 w-full" /><Link href="/check-availability" className="mt-3 block text-center text-sm font-semibold text-blue hover:underline">Or check availability online</Link></div>
           <div className="card p-6"><h3 className="text-lg font-bold">Related services</h3><ul className="mt-3 space-y-2 text-sm">{others.map((o) => <li key={o.slug}><Link className="font-semibold text-blue hover:underline" href={`/services/${o.slug}`}>{o.title}</Link></li>)}</ul></div>
         </aside>
       </div>

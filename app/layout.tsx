@@ -4,6 +4,7 @@ import "@fontsource-variable/inter";
 import "./globals.css";
 import Header from "@/components/navigation/Header";
 import Footer from "@/components/footer/Footer";
+import MobileCallBar from "@/components/ui/MobileCallBar";
 import Analytics from "@/components/ui/Analytics";
 import { SITE } from "@/lib/site";
 
@@ -27,6 +28,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <div className="h-20 lg:hidden" aria-hidden />
+        <MobileCallBar />
         <Analytics />
       </body>
     </html>

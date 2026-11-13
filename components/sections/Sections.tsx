@@ -4,6 +4,8 @@ import { ArrowRight, Building2, Home, MapPinned, Headset, Layers, LifeBuoy } fro
 import Icon from "@/components/ui/Icon";
 import { technologies } from "@/data/technologies";
 import { providers } from "@/data/providers";
+import AvailabilityForm from "@/components/forms/AvailabilityForm";
+import PhoneCTA from "@/components/ui/PhoneCTA";
 import AuthorizedBadge from "@/components/ui/AuthorizedBadge";
 
 export const SectionHead = ({ eyebrow, title, text, center = true }: { eyebrow: string; title: string; text?: string; center?: boolean }) => (
@@ -42,8 +44,8 @@ export function ProviderEcosystem() {
 }
 
 const steps = [
-  { n: "01", t: "Share Your Location", d: "Enter your address so we can look at what is offered where you live or run your business.", svg: <path d="M32 54s18-14 18-28a18 18 0 1 0-36 0c0 14 18 28 18 28Zm0-20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z" /> },
-  { n: "02", t: "Explore Your Options", d: "A specialist verifies which authorized providers can serve you and walks through plans, terms and costs.", svg: <path d="M12 46V30m14 16V18m14 28V24m14 22V12M8 52h48" /> },
+  { n: "01", t: "Share Your Location", d: "Call us or send your address so we can look at what is offered where you live or run your business.", svg: <path d="M32 54s18-14 18-28a18 18 0 1 0-36 0c0 14 18 28 18 28Zm0-20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z" /> },
+  { n: "02", t: "Explore Your Options", d: "A specialist verifies which authorized providers can serve you and walks through plans, terms and costs, by phone.", svg: <path d="M12 46V30m14 16V18m14 28V24m14 22V12M8 52h48" /> },
   { n: "03", t: "Get Connected", d: "Choose what fits. We guide you through enrollment and installation scheduling with your provider.", svg: <path d="M14 34l12 12 24-26" /> },
 ];
 export function HowItWorks() {
@@ -125,6 +127,22 @@ export function HomeBusiness() {
             <Link href={b.href} className="btn btn-secondary mt-7">{b.cta} <ArrowRight size={16} /></Link>
           </div>
         ))}
+      </div>
+    </section>
+  );
+}
+
+export function CheckAvailabilitySection() {
+  return (
+    <section id="check-availability" className="section scroll-mt-20 bg-cloud" aria-labelledby="avail">
+      <div className="container-x grid items-start gap-10 lg:grid-cols-[1fr_1.2fr]">
+        <div className="lg:sticky lg:top-28">
+          <p className="eyebrow">Check availability</p>
+          <h2 id="avail" className="mt-2 text-3xl font-extrabold sm:text-4xl">Rather not call? Tell us your address.</h2>
+          <p className="mt-4 text-lg text-muted">Send your address and what you need. A specialist verifies which authorized providers can serve you and contacts you with real options. We do not show instant results because availability is confirmed address by address.</p>
+          <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-muted"><span>Faster by phone:</span><PhoneCTA location="availability-section" variant="text" /></div>
+        </div>
+        <AvailabilityForm />
       </div>
     </section>
   );
