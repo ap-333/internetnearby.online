@@ -5,7 +5,8 @@ import ProviderProfile from "@/components/provider/ProviderProfile";
 import { getProvider, providers, templatePreview } from "@/data/providers";
 
 export const dynamicParams = false;
-export const generateStaticParams = () => [...providers.map((p) => ({ slug: p.slug })), ...(process.env.NODE_ENV !== "production" ? [{ slug: templatePreview.slug }] : [])];
+// Static export needs at least one param. With no providers yet, the template-preview slug is emitted and 404s in production.
+export const generateStaticParams = () => (providers.length ? providers.map((p) => ({ slug: p.slug })) : [{ slug: templatePreview.slug }]);
 const find = (slug: string) => getProvider(slug) ?? (process.env.NODE_ENV !== "production" && slug === templatePreview.slug ? templatePreview : undefined);
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {

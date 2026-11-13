@@ -2,7 +2,11 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
-import { NEEDS, NEED_LABELS } from "@/lib/validation";
+import { NEEDS, NEED_LABELS, leadSchema } from "@/lib/validation";
+import { CONSENT_VERSION } from "@/lib/site";
+
+// Static hosting has no backend: leads are POSTed to this external JSON endpoint (form service / CRM webhook).
+const LEADS_ENDPOINT = process.env.NEXT_PUBLIC_LEADS_ENDPOINT || "";
 import { getAttribution, trackFormStep, trackLeadSubmit } from "@/lib/tracking";
 import PhoneCTA from "@/components/ui/PhoneCTA";
 
@@ -42,12 +46,18 @@ export default function AvailabilityForm({ initialZip = "", compact = false }: {
 
   async function submit() {
     if (!validate(3)) return;
+    const payload = { ...f, pageUrl: location.href, attribution: getAttribution() };
+    const parsed = leadSchema.safeParse(payload);
+    if (!parsed.success) {
+      const fields = parsed.error.flatten().fieldErrors as Record<string, string[]>;
+      return setErrors(Object.fromEntries(Object.entries(fields).map(([k, v]) => [k, v[0]])));
+    }
+    if (!LEADS_ENDPOINT) { setServerError("Online requests are temporarily unavailable. Please use our Contact page or call us."); return; }
     setBusy(true); setServerError("");
     try {
-      const res = await fetch("/api/leads", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ ...f, pageUrl: location.href, attribution: getAttribution() }) });
+      const res = await fetch(LEADS_ENDPOINT, { method: "POST", headers: { "content-type": "application/json", accept: "application/json" }, body: JSON.stringify({ ...parsed.data, consentTextVersion: CONSENT_VERSION, submittedAt: new Date().toISOString() }) });
       const data = await res.json().catch(() => ({}));
       if (res.ok) { setRef(data.reference ?? ""); trackLeadSubmit(f.needs); go(4); }
-      else if (res.status === 422 && data.fields) setErrors(Object.fromEntries(Object.entries(data.fields as Record<string, string[]>).map(([k, v]) => [k, v[0]])));
       else setServerError(data.error ?? "Something went wrong. Please try again.");
     } catch { setServerError("Network error. Please try again."); }
     setBusy(false);

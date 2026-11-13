@@ -1,0 +1,38 @@
+name: Deploy to GitHub Pages
+on:
+  push: { branches: [main] }
+  workflow_dispatch:
+permissions: { contents: read, pages: write, id-token: write }
+concurrency: { group: pages, cancel-in-progress: true }
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: npm }
+      - run: npm ci
+      - run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://internetnearby.online
+          NEXT_PUBLIC_LEADS_ENDPOINT: ${{ vars.NEXT_PUBLIC_LEADS_ENDPOINT }}
+          NEXT_PUBLIC_PHONE_DISPLAY: ${{ vars.NEXT_PUBLIC_PHONE_DISPLAY }}
+          NEXT_PUBLIC_PHONE_E164: ${{ vars.NEXT_PUBLIC_PHONE_E164 }}
+          NEXT_PUBLIC_BUSINESS_LEGAL_NAME: ${{ vars.NEXT_PUBLIC_BUSINESS_LEGAL_NAME }}
+          NEXT_PUBLIC_BUSINESS_ADDRESS: ${{ vars.NEXT_PUBLIC_BUSINESS_ADDRESS }}
+          NEXT_PUBLIC_BUSINESS_REGISTRATION: ${{ vars.NEXT_PUBLIC_BUSINESS_REGISTRATION }}
+          NEXT_PUBLIC_SUPPORT_EMAIL: ${{ vars.NEXT_PUBLIC_SUPPORT_EMAIL }}
+          NEXT_PUBLIC_BUSINESS_HOURS: ${{ vars.NEXT_PUBLIC_BUSINESS_HOURS }}
+          NEXT_PUBLIC_GTM_ID: ${{ vars.NEXT_PUBLIC_GTM_ID }}
+          NEXT_PUBLIC_GOOGLE_ADS_ID: ${{ vars.NEXT_PUBLIC_GOOGLE_ADS_ID }}
+          NEXT_PUBLIC_GADS_CALL_CONVERSION_LABEL: ${{ vars.NEXT_PUBLIC_GADS_CALL_CONVERSION_LABEL }}
+          NEXT_PUBLIC_GADS_LEAD_CONVERSION_LABEL: ${{ vars.NEXT_PUBLIC_GADS_LEAD_CONVERSION_LABEL }}
+      - uses: actions/upload-pages-artifact@v3
+        with: { path: out }
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: { name: github-pages, url: "${{ steps.d.outputs.page_url }}" }
+    steps:
+      - id: d
+        uses: actions/deploy-pages@v4

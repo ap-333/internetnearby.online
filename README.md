@@ -1,5 +1,16 @@
 # InternetNearby (internetnearby.online)
 
+**Hosting mode: static export on GitHub Pages** (`output: "export"`, deployed by `.github/workflows/pages.yml`, domain via `public/CNAME`).
+Static hosting has no backend, so the availability form POSTs JSON to `NEXT_PUBLIC_LEADS_ENDPOINT` (a form service or CRM webhook). Set it as a GitHub repo *variable*.
+The original Postgres-backed API, admin endpoint and schema are kept in `server-api/` and `db/` for a future Node host; they are not part of the static build.
+
+### GitHub Pages setup
+1. Repo Settings → Pages → Source: **GitHub Actions**; custom domain `internetnearby.online`, enforce HTTPS.
+2. Repo Settings → Secrets and variables → Actions → **Variables**: add `NEXT_PUBLIC_LEADS_ENDPOINT` and the business/tracking values from `.env.example`.
+3. DNS (Spaceship): apex `A` records to `185.199.108.153`, `.109.153`, `.110.153`, `.111.153`; `www` CNAME to `ap-333.github.io`.
+4. Push to `main` to deploy.
+
+
 Next.js 15 · TypeScript · Tailwind 4 · PostgreSQL · Lucide.
 
 ## Run
