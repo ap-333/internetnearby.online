@@ -4,6 +4,7 @@ import { ArrowRight, Building2, Home, MapPinned, Headset, Layers, LifeBuoy } fro
 import Icon from "@/components/ui/Icon";
 import { technologies } from "@/data/technologies";
 import { providers } from "@/data/providers";
+import AuthorizedBadge from "@/components/ui/AuthorizedBadge";
 
 export const SectionHead = ({ eyebrow, title, text, center = true }: { eyebrow: string; title: string; text?: string; center?: boolean }) => (
   <div className={`mb-12 max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
@@ -15,17 +16,26 @@ export const SectionHead = ({ eyebrow, title, text, center = true }: { eyebrow: 
 
 export function ProviderEcosystem() {
   const list = providers.filter((p) => p.authorized && p.logoUrl);
+  const dev = process.env.NODE_ENV !== "production";
   return (
-    <section className="border-b border-line bg-white py-12" aria-labelledby="eco">
-      <div className="container-x text-center">
-        <h2 id="eco" className="text-sm font-bold uppercase tracking-[.14em] !text-muted">Authorized provider network</h2>
-        {list.length ? (
-          <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-12 gap-y-6">
-            {list.map((p) => <li key={p.slug}><Link href={`/providers/${p.slug}`}><Image src={p.logoUrl!} alt={p.name} width={140} height={40} className="h-9 w-auto opacity-80 grayscale transition hover:opacity-100 hover:grayscale-0" /></Link></li>)}
+    <section className="relative overflow-hidden border-b border-line bg-gradient-to-b from-cloud to-white py-14 sm:py-16" aria-labelledby="eco">
+      <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-48 w-[40rem] -translate-x-1/2 rounded-full bg-teal/10 blur-3xl" />
+      <div className="container-x relative text-center">
+        <AuthorizedBadge />
+        <h2 id="eco" className="mx-auto mt-7 max-w-2xl text-2xl font-extrabold sm:text-3xl">Shop internet from the providers you already know</h2>
+        <p className="mx-auto mt-3 max-w-xl text-muted">We are an authorized retailer for the providers below. Availability and plans depend on your address, and a specialist confirms what you can actually order.</p>
+        {list.length > 0 ? (
+          <ul className="mx-auto mt-9 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+            {list.map((p) => (
+              <li key={p.slug}><Link href={`/providers/${p.slug}`} className="logo-tile px-5" aria-label={`${p.name} through InternetNearby`}><Image src={p.logoUrl!} alt={p.name} width={140} height={44} className="max-h-11 w-auto object-contain" /></Link></li>
+            ))}
           </ul>
-        ) : (
-          <p className="mx-auto mt-4 max-w-xl text-muted">We only display providers once our retailer authorization and brand-use permission are confirmed. Our provider directory is being finalized; a specialist will confirm which providers serve your address.</p>
-        )}
+        ) : dev ? (
+          <ul className="mx-auto mt-9 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4" aria-hidden>
+            {[0, 1, 2, 3].map((i) => <li key={i} className="logo-tile border-dashed text-xs font-semibold text-muted">Logo slot {i + 1}</li>)}
+          </ul>
+        ) : null}
+        <p className="mx-auto mt-8 max-w-2xl text-xs leading-relaxed text-muted">InternetNearby is an independent retailer, not an internet service provider. Provider names and logos are trademarks of their respective owners and appear with permission. <Link href="/legal/authorized-retailer-disclosure" className="underline">Authorized Retailer Disclosure</Link></p>
       </div>
     </section>
   );
