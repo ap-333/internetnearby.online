@@ -17,8 +17,9 @@ export const BUSINESS = {
   registration: env(process.env.NEXT_PUBLIC_BUSINESS_REGISTRATION),
   email: env(process.env.NEXT_PUBLIC_SUPPORT_EMAIL),
   hours: env(process.env.NEXT_PUBLIC_BUSINESS_HOURS),
-  phoneDisplay: env(process.env.NEXT_PUBLIC_PHONE_DISPLAY),
-  phoneE164: env(process.env.NEXT_PUBLIC_PHONE_E164),
+  // Default business line; NEXT_PUBLIC_PHONE_* overrides it (e.g. for a call-tracking number).
+  phoneDisplay: env(process.env.NEXT_PUBLIC_PHONE_DISPLAY) || "(888) 710-5977",
+  phoneE164: env(process.env.NEXT_PUBLIC_PHONE_E164) || "+18887105977",
 };
 
 export const SOCIAL = [
