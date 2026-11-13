@@ -8,22 +8,29 @@ const buf = readFileSync("node_modules/@fontsource/manrope/files/manrope-latin-8
 const font = opentype.parse(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength));
 const out = (n, s) => writeFileSync(`public/brand/${n}.svg`, s);
 
-// 64x64 symbol: pin silhouette, N drawn as a path, nodes at the open ends of the N.
-const PIN = "M32 61C32 61 7 39.5 7 24.5a25 25 0 0 1 50 0C57 39.5 32 61 32 61Z";
-const N = "M20.5 36V17.5L43.5 36V17.5";
-function mark({ pin, n, dot, mask }) {
+// 64x64 symbol (3A "i-dot node"): compact pin, lowercase i whose dot is a network node, then N.
+// Monogram is sized and spaced to sit optically centered in the round part of the pin.
+const PIN = "M32 61L47.56 45.56A22 22 0 1 0 16.44 45.56Z";
+const FIT = "translate(-2.9 -7.7) scale(1.09)"; // fits pin + ground shadow into the 64 box
+const MONO = "translate(32 30.2) scale(.86) translate(-32 -29.2)"; // smaller monogram, optically centered
+const I_STEM = "M20.65 29.3V38.5";
+const N = "M30.85 38.5V21.5L43.35 38.5V21.5";
+const SHADOW = (c, o) => `<ellipse cx="32" cy="62.2" rx="8.5" ry="2" fill="${c}" opacity="${o}"/>`;
+function mark({ pin, ink, dot, mask, shadow, shadowOpacity = 0.22 }) {
   const id = "k" + Math.random().toString(36).slice(2, 6);
-  const nodes = (f) => `<circle cx="20.5" cy="36" r="4.6" fill="${f}"/><circle cx="43.5" cy="17.5" r="4.6" fill="${f}"/>`;
-  const nStroke = (s) => `<path d="${N}" fill="none" stroke="${s}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const st = (c) => `fill="none" stroke="${c}" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round"`;
+  const parts = (c, d) => `<g transform="${MONO}"><path d="${I_STEM}" ${st(c)}/><path d="${N}" ${st(c)}/><circle cx="20.65" cy="21.5" r="3.7" fill="${d}"/></g>`;
+  const sh = SHADOW(shadow ?? pin, shadowOpacity);
   if (mask)
-    return `<mask id="${id}"><rect width="64" height="64" fill="#fff"/>${nStroke("#000")}${nodes("#000")}</mask><path d="${PIN}" fill="${pin}" mask="url(#${id})"/>`;
-  return `<path d="${PIN}" fill="${pin}"/>${nStroke(n)}${nodes(dot)}`;
+    return `<g transform="${FIT}">${sh}<mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/>${parts("#000", "#000")}</mask><path d="${PIN}" fill="${pin}" mask="url(#${id})"/></g>`;
+  return `<g transform="${FIT}">${sh}<path d="${PIN}" fill="${pin}"/>${parts(ink, dot)}</g>`;
 }
 const marks = {
-  color: mark({ pin: C.navy, n: C.white, dot: C.teal }),
-  dark: mark({ pin: C.white, n: C.navy, dot: C.teal }),
+  navy: mark({ pin: C.navy, ink: C.white, dot: C.teal }),
+  color: mark({ pin: C.blue, ink: C.white, dot: C.teal, shadow: C.navy }),
+  dark: mark({ pin: C.white, ink: C.navy, dot: C.teal, shadow: C.white, shadowOpacity: 0.25 }),
   mono: mark({ pin: C.navy, mask: true }),
-  monoWhite: mark({ pin: C.white, mask: true }),
+  monoWhite: mark({ pin: C.white, mask: true, shadowOpacity: 0.25 }),
 };
 
 // Wordmark as outlined paths (no font dependency).
@@ -50,7 +57,7 @@ const T = "InternetNearby";
 const set = [
   ["logo-horizontal", horizontal(marks.color, C.navy, C.blue, T)],
   ["logo-horizontal-white", horizontal(marks.dark, C.white, C.white, T)],
-  ["logo-horizontal-dark", horizontal(marks.color, C.navy, C.navy, T)],
+  ["logo-horizontal-dark", horizontal(marks.navy, C.navy, C.navy, T)],
   ["logo-horizontal-mono", horizontal(marks.mono, C.navy, C.navy, T)],
   ["logo-horizontal-mono-white", horizontal(marks.monoWhite, C.white, C.white, T)],
   ["logo-stacked", stacked(marks.color, C.navy, C.blue, T)],
@@ -60,7 +67,7 @@ const set = [
   ["logo-symbol-mono", svg(64, 64, marks.mono, T + " symbol")],
 ];
 // Favicon: pin only, tight crop. App icon: navy rounded square with white pin.
-const fav = svg(64, 64, `<rect width="64" height="64" rx="14" fill="${C.navy}"/><g transform="translate(9.6 8) scale(.7)">${marks.dark}</g>`, T);
+const fav = svg(64, 64, `<rect width="64" height="64" rx="14" fill="${C.navy}"/><g transform="translate(9 8) scale(.72)">${marks.dark}</g>`, T);
 set.push(["favicon", fav], ["app-icon", fav]);
 for (const [n, s] of set) out(n, s);
 

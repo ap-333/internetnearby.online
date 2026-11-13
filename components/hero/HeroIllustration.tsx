@@ -46,10 +46,11 @@ export default function HeroIllustration() {
       ))}
 
       {/* hub */}
-      <g filter="url(#sh)" transform={`translate(${HUB.x} ${HUB.y}) scale(2.3) translate(-32 -32)`}>
-        <path d="M32 61C32 61 7 39.5 7 24.5a25 25 0 0 1 50 0C57 39.5 32 61 32 61Z" fill="#fff" />
-        <path d="M20.5 36V17.5L43.5 36V17.5" fill="none" stroke="#102A43" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-        <circle cx="20.5" cy="36" r="4.6" fill="#16B8A6" /><circle cx="43.5" cy="17.5" r="4.6" fill="#16B8A6" />
+      <g filter="url(#sh)" transform={`translate(${HUB.x} ${HUB.y}) scale(2.5) translate(-32 -34.5)`}>
+        <ellipse cx="32" cy="62.2" rx="8.5" ry="2" fill="#fff" opacity=".25" />
+        <path d="M32 61L47.56 45.56A22 22 0 1 0 16.44 45.56Z" fill="#fff" />
+        <g transform="translate(32 30.2) scale(.86) translate(-32 -29.2)"><g fill="none" stroke="#102A43" strokeWidth="4.4" strokeLinecap="round" strokeLinejoin="round"><path d="M20.65 29.3V38.5" /><path d="M30.85 38.5V21.5L43.35 38.5V21.5" /></g>
+        <circle cx="20.65" cy="21.5" r="3.7" fill="#16B8A6" /></g>
       </g>
 
       {/* homes + business */}
