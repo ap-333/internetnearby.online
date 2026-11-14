@@ -23,7 +23,8 @@ export default function Footer() {
             <Logo variant="white" height={34} />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/70">Better Internet Starts Closer. InternetNearby is an independent multi-provider internet retailer serving customers across the United States.</p>
             <address className="mt-6 space-y-1.5 text-sm not-italic text-white/80">
-              <p className="font-semibold text-white">{COMPANY_NAME}</p>
+              <p className="font-semibold text-white">InternetNearby</p>
+              <p className="text-white/60">A brand of {COMPANY_NAME}</p>
               <p className={addr.isPlaceholder ? "text-amber-300" : ""}>{addr.value}</p>
               <p className={email.isPlaceholder ? "text-amber-300" : ""}>{BUSINESS.email ? <a className="underline" href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a> : email.value}</p>
               <p className={hours.isPlaceholder ? "text-amber-300" : ""}>{hours.value}</p>
@@ -48,7 +49,7 @@ export default function Footer() {
         </div>
         <div className="mt-12 space-y-3 border-t border-white/15 pt-8 text-xs leading-relaxed text-white/60">
           <p><strong className="text-white/80">Retailer disclosure.</strong> InternetNearby is an independent retailer of internet services and is not an internet service provider. We are not the official website of any provider. Service, pricing, availability, speeds and equipment are provided and set by each provider and vary by address. See our <Link className="underline" href="/legal/authorized-retailer-disclosure">Authorized Retailer Disclosure</Link>.</p>
-          <p className={reg.isPlaceholder ? "text-amber-300" : ""}>{reg.value}</p>
+          {!reg.isPlaceholder && <p>{reg.value}</p>}
           <p>© {new Date().getFullYear()} {COMPANY_NAME}. All rights reserved. All third-party names and marks belong to their respective owners.</p>
         </div>
       </div>

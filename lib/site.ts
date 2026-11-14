@@ -12,11 +12,11 @@ export const SITE = {
 };
 
 export const BUSINESS = {
-  legalName: env(process.env.NEXT_PUBLIC_BUSINESS_LEGAL_NAME),
-  address: env(process.env.NEXT_PUBLIC_BUSINESS_ADDRESS),
+  legalName: env(process.env.NEXT_PUBLIC_BUSINESS_LEGAL_NAME) || "NEXIVOLINK LLC",
+  address: env(process.env.NEXT_PUBLIC_BUSINESS_ADDRESS) || "247 Northwinds Blvd B211, Carrollton, GA 30117-4470",
   registration: env(process.env.NEXT_PUBLIC_BUSINESS_REGISTRATION),
-  email: env(process.env.NEXT_PUBLIC_SUPPORT_EMAIL),
-  hours: env(process.env.NEXT_PUBLIC_BUSINESS_HOURS),
+  email: env(process.env.NEXT_PUBLIC_SUPPORT_EMAIL) || "contact@internetnearby.online",
+  hours: env(process.env.NEXT_PUBLIC_BUSINESS_HOURS) || "6:30 AM – 11 PM EST",
   // Default business line; NEXT_PUBLIC_PHONE_* overrides it (e.g. for a call-tracking number).
   phoneDisplay: env(process.env.NEXT_PUBLIC_PHONE_DISPLAY) || "(888) 710-5977",
   phoneE164: env(process.env.NEXT_PUBLIC_PHONE_E164) || "+18887105977",
