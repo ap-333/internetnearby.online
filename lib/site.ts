@@ -48,7 +48,7 @@ export const NAV = [
 ];
 
 export const TRACKING = {
-  gtmId: env(process.env.NEXT_PUBLIC_GTM_ID),
+  gtmId: env(process.env.NEXT_PUBLIC_GTM_ID) || "GTM-KQV262PC",
   adsId: env(process.env.NEXT_PUBLIC_GOOGLE_ADS_ID),
   callLabel: env(process.env.NEXT_PUBLIC_GADS_CALL_CONVERSION_LABEL),
   leadLabel: env(process.env.NEXT_PUBLIC_GADS_LEAD_CONVERSION_LABEL),
