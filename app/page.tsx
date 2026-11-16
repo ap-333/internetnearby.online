@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Hero from "@/components/hero/Hero";
-import { ProviderEcosystem, HowItWorks, Technologies, WhyUs, HomeBusiness, SectionHead, CheckAvailabilitySection } from "@/components/sections/Sections";
+import { Transparency, HowItWorks, Technologies, WhyUs, HomeBusiness, SectionHead, CheckAvailabilitySection } from "@/components/sections/Sections";
 import CtaBand from "@/components/ui/CtaBand";
 import Faq from "@/components/ui/Faq";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: { absolute: "InternetNearby | Find Internet Providers & Plans at Your Address" },
-  description: "Check internet availability at your address, compare options from authorized providers and get help enrolling. InternetNearby is an independent multi-provider internet retailer.",
+  description: "Check internet availability at your address, learn which internet options may serve you and get help enrolling. InternetNearby is an independent internet service advisor, not a provider.",
   alternates: { canonical: "/" },
 };
 
@@ -17,7 +17,7 @@ export default function Home() {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <Hero />
-      <ProviderEcosystem />
+      <Transparency />
       <HowItWorks />
       <Technologies />
       <WhyUs />

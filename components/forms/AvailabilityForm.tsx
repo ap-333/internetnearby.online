@@ -137,7 +137,7 @@ export default function AvailabilityForm({ initialZip = "", compact = false }: {
           <h2 className="text-2xl font-bold">Request received</h2>
           {ref && <p className="text-sm text-muted">Reference: <strong className="text-navy">{ref}</strong></p>}
           <ul className="mx-auto max-w-md space-y-2 text-left text-sm text-ink">
-            <li><strong>1.</strong> A specialist reviews which authorized providers may serve your address.</li>
+            <li><strong>1.</strong> A specialist reviews which options may serve your address.</li>
             <li><strong>2.</strong> They contact you at the number you provided to confirm what is actually available and explain plan terms.</li>
             <li><strong>3.</strong> If you choose to proceed, they guide you through the provider's enrollment.</li>
           </ul>

@@ -8,7 +8,7 @@ export const SITE = {
   tagline: "Better Internet Starts Closer.",
   url: env(process.env.NEXT_PUBLIC_SITE_URL) || "https://internetnearby.online",
   description:
-    "InternetNearby is a multi-provider internet retailer in the United States. Check availability at your address, compare plans from authorized providers and get help getting connected.",
+    "InternetNearby is an independent internet service advisor in the United States. Tell us your address and we help you understand the internet options that may serve it and get connected. We are not an internet service provider and are not affiliated with any provider.",
 };
 
 export const BUSINESS = {
@@ -41,7 +41,6 @@ export const COMPANY_NAME = BUSINESS.legalName || "InternetNearby";
 
 export const NAV = [
   { label: "Internet Plans", href: "/internet-plans" },
-  { label: "Providers", href: "/providers" },
   { label: "How It Works", href: "/how-it-works" },
   { label: "About Us", href: "/about" },
   { label: "Contact", href: "/contact" },

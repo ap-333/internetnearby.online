@@ -41,7 +41,7 @@ export const services: ServicePage[] = [
     sections: [
       { heading: "What to look for", body: ["Symmetrical upload and download speeds, if your workflows depend on cloud tools or video conferencing.", "Static IP availability, if you host services or use certain VPN or security setups.", "Business-class support hours and repair commitments, where offered.", "Service level terms in writing, from the provider."] },
       { heading: "Residential versus business plans", body: ["Business plans may differ in terms of use, support, pricing and contract. Ask which one is appropriate for your use before signing."] },
-      { heading: "How to start", body: ["Tell us your business address and requirements in the availability form. A specialist verifies options with authorized providers and follows up with you."] },
+      { heading: "How to start", body: ["Tell us your business address and requirements in the availability form. A specialist reviews options for your location and follows up with you."] },
     ],
   },
   {

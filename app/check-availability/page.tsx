@@ -4,7 +4,7 @@ import PageHero from "@/components/ui/PageHero";
 import AvailabilityForm from "@/components/forms/AvailabilityForm";
 import PhoneCTA from "@/components/ui/PhoneCTA";
 
-export const metadata: Metadata = { title: "Check Internet Availability at Your Address", description: "Tell us your address and needs. A specialist verifies which authorized providers can serve you and contacts you with next steps.", alternates: { canonical: "/check-availability" } };
+export const metadata: Metadata = { title: "Check Internet Availability at Your Address", description: "Tell us your address and needs. A specialist reviews which internet options may serve you and contacts you with next steps.", alternates: { canonical: "/check-availability" } };
 
 export default function Check() {
   return (

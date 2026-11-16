@@ -6,6 +6,6 @@ export default function Page() {
     blocks={[
       { h: "Why ZIP-code lists can mislead", p: ["Networks are built street by street. Two neighbors can have different choices, and a provider that covers part of a ZIP code may not reach your home."] },
       { h: "What to check at your address", list: ["Which technologies reach your building: fiber, cable, 5G home, fixed wireless, DSL, satellite", "Maximum and typical speeds, both download and upload", "Pricing after introductory periods", "Installation requirements"] },
-      { h: "How InternetNearby helps", p: ["Submit your address. A specialist verifies availability with authorized providers and calls you with options you can actually order."] },
+      { h: "How InternetNearby helps", p: ["Submit your address. A specialist reviews availability for your address and talks you through the options that may be available."] },
     ]} />;
 }

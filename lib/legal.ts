@@ -14,7 +14,7 @@ export const legalDocs: Doc[] = [
   {
     slug: "privacy-policy", title: "Privacy Policy", description: "How InternetNearby collects, uses, shares and protects personal information.", updated: UPDATED,
     sections: [
-      { h: "Who we are", p: [`${co} ("InternetNearby", "we", "us") operates ${SITE.url}. We are an independent retailer of internet services and are not an internet service provider. Contact: ${email}. Address: ${addr}.`] },
+      { h: "Who we are", p: [`${co} ("InternetNearby", "we", "us") operates ${SITE.url}. We are an independent internet service advisor and are not an internet service provider or affiliated with one. Contact: ${email}. Address: ${addr}.`] },
       { h: "Information we collect", p: ["We collect information you give us and information collected automatically."], list: ["Telephone calls you make to us: your phone number, the date, time and length of the call, the web page or advertisement that led to the call, and notes our specialists take. [CONFIRM: call recordings and transcripts, if used.]", "Service address and ZIP code", "Name, telephone number and optional email address", "Your stated needs (for example new connection, switching, business)", "Consent choices, with the wording shown, version and time", "Technical and campaign data: IP address, browser, pages visited, referrer, UTM parameters and advertising click identifiers such as gclid"] },
       { h: "How we use information", p: ["We use your information to answer your calls, verify service availability, contact you about your request, assist with enrollment with a provider you choose, operate and secure the website, measure advertising and improve our services. We send promotional calls or texts only if you separately opted in."] },
       { h: "How we share information", p: ["We share information with the provider you choose to enroll with, as needed to process your request; with service vendors that help us operate (hosting, communications, analytics, CRM) under confidentiality obligations; and where required by law. We do not sell personal information for money. [CONFIRM: describe any sharing for advertising purposes that may be a 'sale' or 'share' under state law.]"] },
@@ -30,8 +30,8 @@ export const legalDocs: Doc[] = [
     slug: "terms-and-conditions", title: "Terms and Conditions", description: "Terms for using the InternetNearby website and services.", updated: UPDATED,
     sections: [
       { h: "About these terms", p: [`These terms govern your use of ${SITE.url} operated by ${co}. By using the site you agree to them.`] },
-      { h: "What we do", p: ["InternetNearby is an independent retailer that helps customers learn about internet service options, check availability and enroll with authorized providers. We do not provide the internet service itself."] },
-      { h: "Calling us", p: ["Calling InternetNearby does not obligate you to buy anything. Specialists speak for InternetNearby, an independent retailer, and will identify the provider whose service is being discussed. Pricing, speeds and availability they describe are based on information from providers and are confirmed by the provider before you enroll. [CONFIRM: call recording language.]"] },
+      { h: "What we do", p: ["InternetNearby is an independent advisory service that helps customers learn about internet service options, check availability and get connected with the provider they choose. We do not provide the internet service itself."] },
+      { h: "Calling us", p: ["Calling InternetNearby does not obligate you to buy anything. Specialists speak for InternetNearby, an independent advisory service, and will identify the provider whose service is being discussed. Pricing, speeds and availability they describe are based on information from providers and are confirmed by the provider before you enroll. [CONFIRM: call recording language.]"] },
       { h: "Provider terms", p: ["Service, pricing, promotions, equipment, installation, contracts, billing, repairs and customer support are provided by the provider, under the provider's own terms. You will be shown or told key terms before you enroll. Providers can change terms and pricing."] },
       { h: "No guarantee of availability", p: ["Information on this site is general. Availability, speeds and pricing depend on your address and are confirmed by the provider. Advertised speeds are typically maximums and actual speeds vary."] },
       { h: "Your information", p: ["You agree to give accurate information. Our use of your information is described in the Privacy Policy."] },
@@ -45,8 +45,8 @@ export const legalDocs: Doc[] = [
   {
     slug: "customer-disclosure", title: "Customer Disclosure", description: "What InternetNearby does, what providers do, and what to confirm before you enroll.", updated: UPDATED,
     sections: [
-      { h: "Who is who", p: ["InternetNearby is the retailer. The provider you choose is your internet service provider. You will have a service relationship and billing relationship with the provider."] },
-      { h: "When you call us", p: ["When you call, the specialist will tell you they are with InternetNearby, an independent retailer, not with your current or prospective provider. We will tell you which provider a plan belongs to before discussing enrollment, and the final terms are disclosed by the provider before you agree. Calling is free and creates no obligation."] },
+      { h: "Who is who", p: ["InternetNearby is an independent advisor. The provider you choose is your internet service provider. You will have a service relationship and billing relationship with the provider."] },
+      { h: "When you call us", p: ["When you call, the specialist will tell you they are with InternetNearby, an independent advisory service, not with your current or prospective provider. We will tell you which provider a plan belongs to before discussing enrollment, and the final terms are disclosed by the provider before you agree. Calling is free and creates no obligation."] },
       { h: "What InternetNearby provides", p: ["Availability checks and guidance, plan information supplied by providers, help with enrollment, and assistance reaching the right provider contact."] },
       { h: "What the provider is responsible for", list: ["Delivering, installing and maintaining the service", "Pricing, promotional offers, taxes and fees", "Equipment, contracts and cancellation terms", "Billing, repairs, credits and technical support", "Final confirmation of availability at your address"], p: [] },
       { h: "Before you enroll, confirm", list: ["Monthly price and what it becomes after any promotional period", "Equipment, installation and activation charges", "Contract length and early termination terms", "Data policies or usage limits", "Expected installation date"], p: [] },
@@ -54,13 +54,14 @@ export const legalDocs: Doc[] = [
     ],
   },
   {
-    slug: "authorized-retailer-disclosure", title: "Authorized Retailer Disclosure", description: "InternetNearby's relationship with internet providers and use of provider names.", updated: UPDATED,
+    slug: "independence-disclosure", title: "Independence and Non-Affiliation Disclosure", description: "Who InternetNearby is, how we are different from internet providers, and how we are compensated.", updated: UPDATED,
     sections: [
-      { h: "Independent authorized retailer", p: [`${co} is an independent retailer. Where this site lists a provider, it does so under a retailer or sales-agent agreement with that provider [CONFIRM: only list providers with a signed agreement].`] },
-      { h: "Not a provider website", p: ["This is not the official website of any internet provider. We are not an internet service provider and do not own or operate the networks described here."] },
-      { h: "Use of names and logos", p: ["Provider names, logos and marks are the property of their owners and appear only where permitted. Their appearance does not imply endorsement beyond the authorized relationship."] },
-      { h: "Provider responsibility", p: ["Each provider is solely responsible for its service, network, pricing, promotions, billing, installation and support."] },
-      { h: "Questions", p: [`Contact ${email}. To verify our relationship with a specific provider, [CONFIRM verification process].`] },
+      { h: "Who we are", p: [`${co} operates InternetNearby, an independent internet service advisory service. We help people understand the internet options that may be available at their address and get connected with the provider they choose.`] },
+      { h: "Not affiliated with any provider", p: ["InternetNearby is not an internet service provider. We are not affiliated with, endorsed by or sponsored by any internet provider, and this is not the official website of any provider. We do not own or operate the networks described on this site."] },
+      { h: "Provider names", p: ["This website does not display provider logos. If a provider's name is mentioned, for example by a specialist on a call, it is used only to identify the service being discussed and remains the property of its owner. Mentioning a name does not imply any relationship."] },
+      { h: "How we are compensated", p: ["[CONFIRM AND DESCRIBE BEFORE PUBLISHING: whether InternetNearby receives compensation, such as referral or sales commissions, from providers when a customer enrolls, and that it does not change the price the customer pays.]"] },
+      { h: "Provider responsibility", p: ["The provider you choose is solely responsible for its service, network, pricing, promotions, billing, installation and support, and discloses the final terms before you agree."] },
+      { h: "Questions", p: [`Contact ${email}.`] },
     ],
   },
   {

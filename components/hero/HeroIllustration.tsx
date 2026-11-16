@@ -1,22 +1,18 @@
-import { providers } from "@/data/providers";
-
-// Hub illustration: provider nodes (top) -> InternetNearby pin (center) -> homes and a business (bottom).
-// Provider nodes show a real logo ONLY for providers marked authorized with a logoUrl in data/providers.ts.
-// Until then they show generic technology labels, so no brand is implied without permission.
+// Hub illustration: technology nodes (top) -> InternetNearby pin (center) -> homes and a business (bottom).
+// Top nodes show generic connection technologies only. No provider names or logos appear anywhere on the site.
 
 const TECH = ["Fiber", "Cable", "5G Home", "Wireless", "Satellite"];
 const HX = [110, 230, 350, 470];
 const HUB = { x: 280, y: 238 };
 
 export default function HeroIllustration() {
-  const logos = providers.filter((p) => p.authorized && p.logoUrl).slice(0, 5);
-  const count = logos.length || TECH.length;
+  const count = TECH.length;
   const nodes = Array.from({ length: count }, (_, i) => {
     const off = i - (count - 1) / 2;
-    return { x: 280 + off * 107, y: 34 + 12 * off * off, logo: logos[i], label: TECH[i] };
+    return { x: 280 + off * 107, y: 34 + 12 * off * off, label: TECH[i] };
   });
   return (
-    <svg viewBox="0 0 560 480" className="h-auto w-full" role="img" aria-label="InternetNearby connects internet providers and technologies to homes and businesses">
+    <svg viewBox="0 0 560 480" className="h-auto w-full" role="img" aria-label="InternetNearby helps connect homes and businesses with internet technologies available at their address">
       <defs>
         <linearGradient id="hl" x1="0" x2="1"><stop stopColor="#1689E8" /><stop offset="1" stopColor="#16B8A6" /></linearGradient>
         <filter id="sh" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="6" stdDeviation="8" floodColor="#000" floodOpacity=".25" /></filter>
@@ -34,14 +30,8 @@ export default function HeroIllustration() {
       {nodes.map((n, i) => (
         <g key={i} transform={`translate(${n.x - 50} ${n.y - 24})`} filter="url(#sh)">
           <rect width="100" height="48" rx="14" fill="#fff" />
-          {n.logo ? (
-            <image href={n.logo.logoUrl!} x="6" y="5" width="88" height="38" preserveAspectRatio="xMidYMid meet"><title>{n.logo.name}</title></image>
-          ) : (
-            <>
               <circle cx="16" cy="24" r="4.5" fill="#16B8A6" />
               <text x="28" y="28.5" fontSize="12" fontWeight="700" fill="#102A43" style={{ fontFamily: "var(--font-heading)" }}>{n.label}</text>
-            </>
-          )}
         </g>
       ))}
 

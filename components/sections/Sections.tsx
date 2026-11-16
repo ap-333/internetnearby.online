@@ -1,12 +1,9 @@
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, Building2, Home, MapPinned, Headset, Layers, LifeBuoy } from "lucide-react";
+import { ArrowRight, Building2, Home, MapPinned, Headset, Layers, LifeBuoy, ShieldCheck, Scale, PhoneCall, BadgeInfo } from "lucide-react";
 import Icon from "@/components/ui/Icon";
 import { technologies } from "@/data/technologies";
-import { providers } from "@/data/providers";
 import AvailabilityForm from "@/components/forms/AvailabilityForm";
 import PhoneCTA from "@/components/ui/PhoneCTA";
-import AuthorizedBadge from "@/components/ui/AuthorizedBadge";
 
 export const SectionHead = ({ eyebrow, title, text, center = true }: { eyebrow: string; title: string; text?: string; center?: boolean }) => (
   <div className={`mb-12 max-w-2xl ${center ? "mx-auto text-center" : ""}`}>
@@ -16,28 +13,30 @@ export const SectionHead = ({ eyebrow, title, text, center = true }: { eyebrow: 
   </div>
 );
 
-export function ProviderEcosystem() {
-  const list = providers.filter((p) => p.authorized && p.logoUrl);
-  const dev = process.env.NODE_ENV !== "production";
+export function Transparency() {
+  const items = [
+    { Icon: BadgeInfo, t: "Independent, and upfront about it", d: "InternetNearby is an independent advisory service. We are not an internet provider and we are not affiliated with, endorsed by or sponsored by any provider." },
+    { Icon: Scale, t: "No made-up prices or promises", d: "We don't advertise prices, speeds or offers we can't verify for your address. Final plans, pricing and terms are set and confirmed by the provider before you agree to anything." },
+    { Icon: PhoneCall, t: "You always know who you're talking to", d: "Our specialists identify themselves as InternetNearby at the start of every call, explain what we do, and never pose as your current or prospective provider." },
+    { Icon: ShieldCheck, t: "Your consent comes first", d: "Calling or submitting a request creates no obligation. Promotional calls and texts happen only if you separately opt in, and you can opt out any time." },
+  ];
   return (
-    <section className="relative overflow-hidden border-b border-line bg-gradient-to-b from-cloud to-white py-14 sm:py-16" aria-labelledby="eco">
-      <div aria-hidden className="pointer-events-none absolute left-1/2 top-0 h-48 w-[40rem] -translate-x-1/2 rounded-full bg-teal/10 blur-3xl" />
-      <div className="container-x relative text-center">
-        <AuthorizedBadge />
-        <h2 id="eco" className="mx-auto mt-7 max-w-2xl text-2xl font-extrabold sm:text-3xl">Shop internet from the providers you already know</h2>
-        <p className="mx-auto mt-3 max-w-xl text-muted">We are an authorized retailer for the providers below. Availability and plans depend on your address, and a specialist confirms what you can actually order.</p>
-        {list.length > 0 ? (
-          <ul className="mx-auto mt-9 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2">
-            {list.map((p) => (
-              <li key={p.slug}><Link href={`/providers/${p.slug}`} className="logo-tile" aria-label={`${p.name} through InternetNearby`}><Image src={p.logoUrl!} alt={p.name} width={400} height={100} /></Link></li>
-            ))}
-          </ul>
-        ) : dev ? (
-          <ul className="mx-auto mt-9 grid max-w-4xl grid-cols-2 gap-4 sm:grid-cols-4" aria-hidden>
-            {[0, 1, 2, 3].map((i) => <li key={i} className="logo-tile border-dashed text-xs font-semibold text-muted">Logo slot {i + 1}</li>)}
-          </ul>
-        ) : null}
-        <p className="mx-auto mt-8 max-w-2xl text-xs leading-relaxed text-muted">InternetNearby is an independent retailer, not an internet service provider. Provider names and logos are trademarks of their respective owners and appear with permission. <Link href="/legal/authorized-retailer-disclosure" className="underline">Authorized Retailer Disclosure</Link></p>
+    <section className="border-b border-line bg-gradient-to-b from-cloud to-white py-14 sm:py-16" aria-labelledby="transparency">
+      <div className="container-x">
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="eyebrow">How we work</p>
+          <h2 id="transparency" className="mt-2 text-2xl font-extrabold sm:text-3xl">Clear, honest help finding internet at your address</h2>
+          <p className="mt-3 text-muted">Choosing internet shouldn&apos;t feel like guesswork. Here is exactly what InternetNearby does, and what we don&apos;t.</p>
+        </div>
+        <ul className="mx-auto mt-10 grid max-w-5xl gap-5 sm:grid-cols-2">
+          {items.map(({ Icon, t, d }) => (
+            <li key={t} className="card flex gap-4 p-6">
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy text-teal"><Icon size={22} aria-hidden /></span>
+              <div><h3 className="text-base font-bold">{t}</h3><p className="mt-1.5 text-sm leading-relaxed text-muted">{d}</p></div>
+            </li>
+          ))}
+        </ul>
+        <p className="mx-auto mt-8 max-w-2xl text-center text-xs leading-relaxed text-muted">InternetNearby is not the official website of any internet service provider. Any third-party names mentioned on a call are used only to identify the service being discussed and belong to their respective owners. <Link href="/legal/independence-disclosure" className="underline">Independence &amp; Non-Affiliation Disclosure</Link></p>
       </div>
     </section>
   );
@@ -45,7 +44,7 @@ export function ProviderEcosystem() {
 
 const steps = [
   { n: "01", t: "Share Your Location", d: "Call us or send your address so we can look at what is offered where you live or run your business.", svg: <path d="M32 54s18-14 18-28a18 18 0 1 0-36 0c0 14 18 28 18 28Zm0-20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z" /> },
-  { n: "02", t: "Explore Your Options", d: "A specialist verifies which authorized providers can serve you and walks through plans, terms and costs, by phone.", svg: <path d="M12 46V30m14 16V18m14 28V24m14 22V12M8 52h48" /> },
+  { n: "02", t: "Explore Your Options", d: "A specialist reviews which options may serve your address and walks through plans, terms and costs, by phone.", svg: <path d="M12 46V30m14 16V18m14 28V24m14 22V12M8 52h48" /> },
   { n: "03", t: "Get Connected", d: "Choose what fits. We guide you through enrollment and installation scheduling with your provider.", svg: <path d="M14 34l12 12 24-26" /> },
 ];
 export function HowItWorks() {
@@ -139,7 +138,7 @@ export function CheckAvailabilitySection() {
         <div className="lg:sticky lg:top-28">
           <p className="eyebrow">Check availability</p>
           <h2 id="avail" className="mt-2 text-3xl font-extrabold sm:text-4xl">Rather not call? Tell us your address.</h2>
-          <p className="mt-4 text-lg text-muted">Send your address and what you need. A specialist verifies which authorized providers can serve you and contacts you with real options. We do not show instant results because availability is confirmed address by address.</p>
+          <p className="mt-4 text-lg text-muted">Send your address and what you need. A specialist reviews which options may serve your address and contacts you. We do not show instant results because availability is confirmed address by address.</p>
           <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-muted"><span>Faster by phone:</span><PhoneCTA location="availability-section" variant="text" /></div>
         </div>
         <AvailabilityForm />

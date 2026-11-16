@@ -23,7 +23,7 @@ export default function Hero() {
             </ul>
             <Link href="/#check-availability" className="text-sm font-semibold text-white/90 underline decoration-teal decoration-2 underline-offset-4 hover:text-white">Prefer to check online? Check availability &darr;</Link>
           </div>
-          <p className="mt-7 flex items-center gap-2 text-sm text-white/65"><ShieldCheck size={16} className="text-teal" aria-hidden /> Independent authorized retailer. Service is provided by the provider you choose.</p>
+          <p className="mt-7 flex items-center gap-2 text-sm text-white/65"><ShieldCheck size={16} className="text-teal" aria-hidden /> Independent advisory service, not an internet provider and not affiliated with any provider. Service is delivered by the provider you choose.</p>
         </div>
         <div className="mx-auto w-full max-w-lg lg:max-w-none"><HeroIllustration /></div>
       </div>
